@@ -1,0 +1,36 @@
+{
+  "name": "fitbit-logger",
+  "description": "Get logs from the device without debugger",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "babel source --out-dir .",
+    "prepublish": "npm run build"
+  },
+  "babel": {
+    "presets": [
+      [
+        "es2015",
+        {
+          "modules": false
+        }
+      ]
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Artaud/fitbit-logger.git"
+  },
+  "keywords": [
+    "fitbitdev"
+  ],
+  "author": "Jiri Richter",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Artaud/fitbit-logger/issues"
+  },
+  "homepage": "https://github.com/Artaud/fitbit-logger#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  }
+}
