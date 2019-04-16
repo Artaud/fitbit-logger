@@ -77,32 +77,6 @@ The message is appended to a file and at some moment sent to companion via file-
 The message to be logged. This can be any data type.
 
 
-
-
-
-
-## API
-
-* **companion.setup({ provider, apiKey})** : configure the provider / apiKey used to fetch the weather
-* **app.fetch(maximumAge = 0)** : retrieve the weather, if given the parameter is the maximum age in milliseconds of a possible cached weather data that is acceptable to return. Default is `0`
-* **app.get()** : returns immediately the last cached weather data (the value can be `undefined` when no data has been received)
-
-## Example of result
-```json
-  {
-    "temperatureC":15,
-    "temperatureF":59,
-    "location":"Castelnau-D'Estretefonds",
-    "description":"Mostly Clear",
-    "isDay":false,
-    "conditionCode":0,
-    "realConditionCode":"this is the real conditioncode returned by the provider",
-    "sunrise":1507442496594,
-    "sunset":1507483356594,
-    "timestamp":1507496916594
-  }
-```
-
 ## Contribution
 
 I'm not a javascript expert so every comment/code refactoring/best practice and especially BUG REPORTING is appreciated. Don't hesitate to make a PR and/or tell me what's wrong.
