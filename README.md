@@ -43,6 +43,8 @@ fitlogger.log("The monkey ate my pajamas")
 
 ```
 
+This will result in
+
 ## API
 
 ### Companion
@@ -69,6 +71,14 @@ Options for logger's behavior on the device.
 ##### `options.doConsoleLog` **boolean**
 False by default.
 If true, each log sent via fitlogger.send() will also be logged using console.log() on the device.
+##### `options.automaticInterval` **number**
+Optional
+If set to any number larger than 0, sending logs to companion via file-transfer will happen automatically, with an interval of your choice.
+
+If unset, call fitlogger.sendLogFileToCompanion() to send the logfile manually at any moment.
+
+#### `fitlogger.sendLogFileToCompanion(message)`
+Trigger sending logfile from device to companion
 
 #### `fitlogger.log(message)`
 Logs a timestamped message.
