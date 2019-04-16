@@ -77,7 +77,7 @@ If set to any number larger than 0, sending logs to companion via file-transfer 
 
 If unset, call fitlogger.sendLogFileToCompanion() to send the logfile manually at any moment.
 
-#### `fitlogger.sendLogFileToCompanion(message)`
+#### `fitlogger.sendLogFileToCompanion()`
 Trigger sending logfile from device to companion
 
 #### `fitlogger.log(message)`
