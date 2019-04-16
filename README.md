@@ -49,7 +49,7 @@ fitlogger.log("The monkey ate my pajamas")
 #### `fitlogger.init(options)`
 Initializes fitbit-logger. Needs to be called first if you want to use the logger.
 ##### `options` **object**
-Options for logger's behavior.
+Options for logger's behavior on the companion.
 ##### `options.doConsoleLog` **boolean**
 False by default.
 If true, each log from the device will also be logged in companion using console.log, in the following format:
@@ -65,7 +65,7 @@ Example: https://example.com?data=nice%20log
 #### `fitlogger.init(options)`
 Initializes fitbit-logger. Needs to be called first if you want to use the logger.
 ##### `options` **object**
-Options for how this message should be handled. Currently, only `timeout` is supported.
+Options for logger's behavior on the device.
 ##### `options.doConsoleLog` **boolean**
 False by default.
 If true, each log sent via fitlogger.send() will also be logged using console.log() on the device.
