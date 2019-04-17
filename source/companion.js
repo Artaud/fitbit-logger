@@ -9,15 +9,11 @@ var url = undefined
 
 const init = (options) => {
   options = options || {}
-  if (options.doConsoleLog) {
-    doConsoleLog = true
-  }
-  if (options.url) {
-    url = options.url
-  }
+  if (options.doConsoleLog) { doConsoleLog = true }
+  if (options.url) { url = options.url }
 
   processAllFiles()
-  inbox.addEventListener("newfile", processAllFiles())
+  inbox.addEventListener("newfile", processAllFiles)
 }
 
 async function processAllFiles() {
@@ -39,6 +35,8 @@ async function processAllFiles() {
         });
     }
   }
+  // TODO clear the file
+  
 }
 
 const fitlogger = {

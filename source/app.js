@@ -16,14 +16,11 @@ const init = (options) => {
     doConsoleLog = true
   }
 
-  // clears the log file
-  var file = openSync(fileName, "w")
-  closeSync(file)
+  clearLogFile()
 
   if (options.automaticInterval > 0) {
     setInterval(() => {
       if (!logFileEmpty) {
-        logFileEmpty = true
         sendLogFileToCompanion()
       }
     }, options.automaticInterval);
@@ -48,11 +45,17 @@ const sendLogFileToCompanion = () => {
   outbox
     .enqueueFile(fileName)
     .then((ft) => {
-      // console.log(`Transfer of $‌{ft.name} successfully queued.`);
+      clearLogFile()
     })
     .catch((error) => {
       console.log("fitbit-logger: send to companion failed " + error);
     })
+}
+
+const clearLogFile = () => {
+  var file = openSync(fileName, "w")
+  closeSync(file)
+  logFileEmpty = true
 }
 
 const encodeToArrayBuffer = (str) => {
