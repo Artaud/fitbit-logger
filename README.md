@@ -35,7 +35,8 @@ Add the following code in your *app/index.js* file
 import fitlogger from 'fitbit-logger/app'
 
 options = {
-  doConsoleLog: true
+  doConsoleLog: true,
+  automaticInterval: 5000
 }
 fitlogger.init(options)
 
@@ -43,7 +44,13 @@ fitlogger.log("The monkey ate my pajamas")
 
 ```
 
-This will result in
+This particular configuration will result in: being:
+* "The monkey ate my pajamas" logged to console on the app
+* "The monkey ate my pajamas" prefixed with "App" and timestamped and appended to a file on device
+* every 5000 milliseconds, the file will be checked. If it's not empty, it will be queued for transfer to the companion, and cleared
+* on companion, "The monkey ate my pajamas" will be logged to console once the file arrives
+* on companion, a get request will be made to https://example.com?data=App%20123456789%20The%20monkey%20ate%20my%20pajamas
+
 
 ## API
 
@@ -73,9 +80,9 @@ False by default.
 If true, each log sent via fitlogger.send() will also be logged using console.log() on the device.
 ##### `options.automaticInterval` **number**
 Optional
-If set to any number larger than 0, sending logs to companion via file-transfer will happen automatically, with an interval of your choice.
+If set to any number larger than 0, sending logs to companion via file-transfer will happen automatically, with an interval of your choice (in ms).
 
-If unset, call fitlogger.sendLogFileToCompanion() to send the logfile manually at any moment.
+If unset, call fitlogger.sendLogFileToCompanion() to send the logfile manually at your convenience.
 
 #### `fitlogger.sendLogFileToCompanion()`
 Trigger sending logfile from device to companion
