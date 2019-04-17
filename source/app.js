@@ -39,7 +39,7 @@ const log = (value) => {
   var file = openSync(fileName, "a")
 
   value = "App " + Date.now() + " " + value
-  buffer = encodeToArrayBuffer(value)
+  var buffer = encodeToArrayBuffer(value)
   writeSync(file, buffer)
   closeSync(file)
 }
