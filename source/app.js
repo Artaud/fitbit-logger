@@ -17,7 +17,7 @@ const init = (options) => {
   }
 
   // clears the log file
-  file = openSync(fileName, "w")
+  var file = openSync(fileName, "w")
   closeSync(file)
 
   if (options.automaticInterval > 0) {
@@ -36,7 +36,7 @@ const log = (value) => {
   }
 
   logFileEmpty = false
-  file = openSync(fileName, "a")
+  var file = openSync(fileName, "a")
 
   value = "App " + Date.now() + " " + value
   buffer = encodeToArrayBuffer(value)
@@ -56,8 +56,8 @@ const sendLogFileToCompanion = () => {
 }
 
 const encodeToArrayBuffer = (str) => {
-  var binstr = unescape(encodeURIComponent(str)),
-    arr = new Uint8Array(binstr.length);
+  var binstr = unescape(encodeURIComponent(str))
+  var arr = new Uint8Array(binstr.length);
   const split = binstr.split('');
   for (let i = 0; i < split.length; i++) {
     arr[i] = split[i].charCodeAt(0);
