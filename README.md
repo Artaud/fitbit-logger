@@ -36,7 +36,8 @@ import fitlogger from 'fitbit-logger/app'
 
 options = {
   doConsoleLog: true,
-  automaticInterval: 5000
+  automaticInterval: 5000,
+  prefix: 'App'
 }
 fitlogger.init(options)
 
@@ -83,6 +84,9 @@ Optional
 If set to any number larger than 0, sending logs to companion via file-transfer will happen automatically, with an interval of your choice (in ms).
 
 If unset, call fitlogger.sendLogFileToCompanion() to send the logfile manually at your convenience.
+##### `options.prefix` **string**
+Defaults to 'App'
+String that will be used as a prefix before each log line
 
 #### `fitlogger.sendLogFileToCompanion()`
 Trigger sending logfile from device to companion

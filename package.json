@@ -1,9 +1,9 @@
 {
   "name": "fitbit-logger",
   "description": "Get logs from the device without debugger",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "scripts": {
-    "build": "babel source --out-dir .",
+    "build": "babel src --out-dir .",
     "prepublish": "npm run build"
   },
   "babel": {

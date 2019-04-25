@@ -8,6 +8,7 @@ import { outbox } from "file-transfer";
 var fileName = "fitbit-logger"
 var logFileEmpty = true
 var doConsoleLog = false
+var prefix = 'App'
 
 const init = (options) => {
   options = options || {}
@@ -25,6 +26,10 @@ const init = (options) => {
       }
     }, options.automaticInterval);
   }
+
+  if (options.prefix) {
+    prefix = options.prefix
+  }
 }
 
 const log = (value) => {
@@ -35,7 +40,7 @@ const log = (value) => {
   logFileEmpty = false
   var file = openSync(fileName, "a")
 
-  value = "App " + Date.now() + " " + value
+  value = prefix + " " + Date.now() + " " + value + '\n'
   var buffer = encodeToArrayBuffer(value)
   writeSync(file, buffer)
   closeSync(file)

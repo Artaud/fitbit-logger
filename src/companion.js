@@ -19,24 +19,34 @@ const init = (options) => {
 async function processAllFiles() {
   let file;
   while ((file = await inbox.pop())) {
-    const log = await file.text();
-    if (doConsoleLog) {
-      console.log(log);
-    }
+    const text = await file.text();
 
-    if (url) {
-      url = url + '?data=' + log
-      fetch(url)
-        .then((response) => {
-          return response.text();
-        })
-        .catch((error) => {
-          console.error("fitbit-logger: fetch failed " + error)
-        });
+    let logs = text.split('\n')
+
+    for (let i = 0; i < logs.length; i++) {
+      let log = logs[i];
+
+      if (log.length == 0) {
+        continue
+      }
+
+      if (doConsoleLog) {
+        console.log(log);
+      }
+
+      if (url) {
+        url = url + '?data=' + log
+        fetch(url)
+          .then((response) => {
+            return response.text();
+          })
+          .catch((error) => {
+            console.error("fitbit-logger: fetch failed " + error)
+          });
+      }
     }
   }
   // TODO clear the file
-  
 }
 
 const fitlogger = {
