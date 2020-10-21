@@ -8,6 +8,8 @@ import { outbox } from "file-transfer";
 var fileName = "fitbit-logger"
 var logFileEmpty = true
 var doConsoleLog = false
+var defaultConsole = {}
+var replaceConsole = false
 var prefix = 'App'
 
 const init = (options) => {
@@ -16,6 +18,21 @@ const init = (options) => {
   if (options.doConsoleLog) {
     doConsoleLog = true
   }
+
+  if (options.replaceConsole) {
+    replaceConsole = true
+  }
+
+  ['error', 'info', 'log', 'trace', 'warn'].forEach(type => {
+    defaultConsole[type] = console[type];
+    console[type] = (...args) => {
+      defaultConsole[type](...args);
+
+      if (replaceConsole) {
+        args.forEach(arg => writeLogToFile(`${type.toUpperCase()}: ${arg}`))
+      }
+    }
+  });
 
   clearLogFile()
 
@@ -34,9 +51,13 @@ const init = (options) => {
 
 const log = (value) => {
   if (doConsoleLog) {
-    console.log(value)
+    defaultConsole.log(value)
   }
 
+  writeLogToFile(value)
+}
+
+const writeLogToFile = (value) => {
   logFileEmpty = false
   var file = openSync(fileName, "a")
 
@@ -53,7 +74,7 @@ const sendLogFileToCompanion = () => {
       clearLogFile()
     })
     .catch((error) => {
-      console.log("fitbit-logger: send to companion failed " + error);
+      defaultConsole.log(`fitbit-logger: send to companion failed ${error}`);
     })
 }
 
